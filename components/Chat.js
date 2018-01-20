@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
 
 window.navigator.userAgent = 'react-native';
-import io from 'socket.io-client/dist/socket.io';
+// import openSocket from 'socket.io-client/dist/socket.io';
+
+import openSocket from 'socket.io-client';
+const socket = openSocket('localhost:1337', {jsonp: false});
 
 import OneSwitch from './OneSwitch';
 
@@ -40,8 +43,6 @@ export default class Chat extends Component {
       teams: [],
       name: 'Bob'
     };
-    this.socket = io('localhost:1337', {jsonp: false});
-    this.socket.on('update', () => this.setState({name: 'Nate'}));
     this.handleSwitch = this.handleSwitch.bind(this);
   }
 
@@ -62,6 +63,12 @@ export default class Chat extends Component {
             toggleSwitch={this.handleSwitch}
             switchValue={this.state.ready}
           />
+          {/*
+            socket.on('update', () => {
+              console.log('!!!!!!!!!!!!');
+              this.setState({name: 'Nate'});
+            });
+          */}
           <Text style={styles.text}>Is Team {this.props.navigation.state.params.name} ready?</Text>
         </View>
       </View>

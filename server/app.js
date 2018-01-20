@@ -1,19 +1,31 @@
-const Express = require('express');
-const app = Express();
-const Server = require('http').Server(app);
-const io = require('socket.io')(Server);
+const express = require('express');
+const app = express();
+const socketio = require('socket.io');
+// const io = require('socket.io')(server);
 const path = require('path');
 
-Server.listen(1337);
+const PORT = process.env.PORT || 1337;
 
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'index.html'));
+const server = app.listen(PORT, () => {
+    console.log(`Listening on http://localhost:${server.address().port}`);
 });
 
-io.on('connection', function (socket) {
-  console.log('???????', socket.id);
-  socket.on('update', (data) => {
-    console.log('!!!!!!!', data);
-    io.emit('update');
+// server.listen(PORT, () => {
+//   console.log(`The collective is listening on PORT ${PORT}.`);
+// });
+
+const io = socketio(server);
+
+io.on('connection', (socket) => {
+  console.log(`A socket connection made to: ${socket.id}.`);
+  socket.on('disconnect', () => {
+    console.log(`Connection ${socket.id} has left the building.`);
   });
+  socket.on('update', () => {
+    socket.broadcast.emit('update');
+  });
+});
+
+app.get('/', (req, res, next) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
