@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
 
+window.navigator.userAgent = 'react-native';
+import io from 'socket.io-client/dist/socket.io';
+
 import OneSwitch from './OneSwitch';
 
 const styles = StyleSheet.create({
@@ -34,8 +37,11 @@ export default class Chat extends Component {
     super(props);
     this.state = {
       ready: false,
-      teams: []
+      teams: [],
+      name: 'Bob'
     };
+    this.socket = io('localhost:1337', {jsonp: false});
+    this.socket.on('update', () => this.setState({name: 'Nate'}));
     this.handleSwitch = this.handleSwitch.bind(this);
   }
 
@@ -50,6 +56,7 @@ export default class Chat extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <Text>{this.state.name}</Text>
         <View style={{flexDirection: 'row', padding: 20}}>
           <OneSwitch
             toggleSwitch={this.handleSwitch}

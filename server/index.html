@@ -1,0 +1,13 @@
+<h1>Mixer Fixer</h1>
+
+<button>Update</button>
+
+<script src="/socket.io/socket.io.js"></script>
+
+<script>
+  const socket = io();
+  const button = document.querySelector('button');
+  button.onclick = function() {
+    socket.emit('update');
+  };
+</script>
