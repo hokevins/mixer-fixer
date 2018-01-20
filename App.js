@@ -17,13 +17,13 @@ const RootNavigator = StackNavigator({
     Chat: {
       screen: Chat,
       navigationOptions: {
-        headerTitle: 'Mixer Fixer'
+        headerTitle: '3...2...1!'
       }
     },
     Countdown: {
       screen: Countdown,
       navigationOptions: {
-        headerTitle: '3...2...1!'
+        headerTitle: 'You got this.'
       }
     }
     // Timer: {

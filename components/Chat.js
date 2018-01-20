@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button, Image, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
 
 import OneSwitch from './OneSwitch';
 
@@ -34,9 +34,7 @@ export default class Chat extends Component {
     super(props);
     this.state = {
       ready: false,
-      teams: [],
-      switch1Value: false,
-      switch2Value: false
+      teams: []
     };
     this.handleSwitch = this.handleSwitch.bind(this);
   }
@@ -46,6 +44,7 @@ export default class Chat extends Component {
       ready: value
     });
     this.props.navigation.navigate('Countdown');
+    this.setState({ready: false});
   }
 
   render() {

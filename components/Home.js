@@ -11,19 +11,19 @@ const styles = StyleSheet.create({
     backgroundColor: 'white'
   },
   text1: {
-    fontSize: 14,
+    fontSize: 20,
     padding: 5
   },
   text2: {
     fontSize: 20,
-    padding: 10
+    padding: 8
   },
   inputText: {
       height: 40,
       width: 250,
       margin: 5,
       textAlign: 'center',
-      color: '#e8eef2',
+      color: '#E8EEF2',
       backgroundColor: '#43484D'
   },
   button: {
@@ -56,7 +56,8 @@ export default class Home extends Component {
             flex: 1,
             alignSelf: 'stretch',
             width: undefined,
-            height: undefined
+            height: undefined,
+            margin: 5
           }}
           source={require('../assets/fullstackLogo2.png')}
         />
