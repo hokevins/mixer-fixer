@@ -83,9 +83,6 @@ This project is set up to use [jest](https://facebook.github.io/jest/) for tests
 
 ## iPhone 6S Screenshots
 
-Demo 1:
 ![iPhone 6S Screenshot DEMO 1](assets/demo1.png)
-Demo 2:
 ![iPhone 6S Screenshot DEMO 2](assets/demo2.png)
-Demo 3:
 ![iPhone 6S Screenshot DEMO 3](assets/demo3.png)
