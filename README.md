@@ -29,7 +29,8 @@ While this project has been published on Expo, it has not yet been deployed to a
 ## Housekeeping & Updating to New Releases
 
 Currently, React Native does not support npm version 5.x+.
-I recommend using a Node/NPM version manager like 'n'.  `npm install -g n`
+I recommend using a Node/NPM version manager like 'n'.
+Simply run `npm install -g n` to install 'n' globally.
 Running the following commands will tell you what versions you currently have:
 ```
 node -v
@@ -50,7 +51,7 @@ If Yarn was installed when the project was initialized, then dependencies will h
 
 ### `npm start`
 
-Concurrently runs your app in development mode with `npm run server` and `npm run ios` for the JS packager/compiler.
+`Concurrently` runs your app in development mode with `npm run server` and `npm run ios` for the packager/compiler.
 
 ### `npm run react`
 
@@ -64,7 +65,7 @@ npm start -- --reset-cache
 yarn start -- --reset-cache
 ```
 
-#### `npm run ios`
+### `npm run ios`
 
 Like `npm start`, but also attempts to open your app in the iOS Simulator if you're on a Mac and have it installed.
 
@@ -72,7 +73,7 @@ Like `npm start`, but also attempts to open your app in the iOS Simulator if you
 
 Runs the server only using nodemon.
 
-#### `npm test`
+### `npm test`
 
 Runs the [jest](https://github.com/facebook/jest) test runner on your tests.
 
@@ -80,6 +81,11 @@ Runs the [jest](https://github.com/facebook/jest) test runner on your tests.
 
 This project is set up to use [jest](https://facebook.github.io/jest/) for tests. You can configure whatever testing strategy you like, but jest works out of the box. Create test files in directories called `__tests__` or with the `.test` extension to have the files loaded by jest. See the [the template project](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/App.test.js) for an example test. The [jest documentation](https://facebook.github.io/jest/docs/en/getting-started.html) is also a wonderful resource, as is the [React Native testing tutorial](https://facebook.github.io/jest/docs/en/tutorial-react-native.html).
 
+## iPhone 6S Screenshots
+
+Demo 1:
 ![iPhone 6S Screenshot DEMO 1](assets/demo1.png)
+Demo 2:
 ![iPhone 6S Screenshot DEMO 2](assets/demo2.png)
+Demo 3:
 ![iPhone 6S Screenshot DEMO 3](assets/demo3.png)
