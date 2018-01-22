@@ -7,7 +7,7 @@ const Countdown = (props) => {
    return (
         <View style={{flex: 1}}>
           <TimerCountdown
-              initialSecondsRemaining={1000 * 5}
+              initialSecondsRemaining={1000 * 10}
               onTick={() => console.log('tick')}
               onTimeElapsed={() => props.navigation.goBack()}
               allowFontScaling={true}

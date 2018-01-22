@@ -12,7 +12,7 @@ const createUser = ({name = ''} = {}) => {
   };
 };
 
-// For future implementation:
+// Future implementation:
 const createMessage = ({message = '', sender = ''} = {}) => {
   return {
     id: uuidv4(),
@@ -22,7 +22,7 @@ const createMessage = ({message = '', sender = ''} = {}) => {
   };
 };
 
-// For future implementation:
+// Future implementation:
 const createChat = ({messages = [], name = 'Community', users = []} = {}) => {
   return {
     id: uuidv4(),

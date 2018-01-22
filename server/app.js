@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const socketio = require('socket.io');
-// const io = require('socket.io')(server);
 const path = require('path');
 
 const PORT = process.env.PORT || 1337;
@@ -24,6 +23,9 @@ io.on('connection', (socket) => {
   });
   socket.on('update', () => {
     socket.broadcast.emit('update');
+  });
+  socket.on('READY', () => {
+    socket.broadcast.emit('READY');
   });
   socket.on(VERIFY_USER, (name, callback) => {
     if (isUser(connectedUsers, name)) {

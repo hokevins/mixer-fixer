@@ -47,7 +47,6 @@ export default class Home extends Component {
     super(props);
     this.state = {
       socket: null,
-      users: ['boo', 'kitty'],
       user: null,
       name: '',
       error: ''
@@ -81,12 +80,12 @@ export default class Home extends Component {
   handleSubmit() {
     const socket = this.state.socket;
     const name = this.state.name;
-    this.props.navigation.navigate('Chat');
     socket.emit(VERIFY_USER, name, this.setUser);
+    this.props.navigation.navigate('Chat');
   }
-
-  setUser(user, isUser) {
-    if (isUser) {
+// Future implementation:  fix duplicate user render error problem on Line: 89 and moving Line 84 navigation down to the setUser else block without render delay bug.
+  setUser(user) {
+    if (user.isUser) {
       this.setState({ error: 'Name already taken.' });
     } else {
       const { socket } = this.state;
