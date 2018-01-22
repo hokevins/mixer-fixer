@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Button, Image, TextInput } from 'react-native';
-import { StackNavigator } from 'react-navigation';
+
+window.navigator.userAgent = 'react-native';
+import io from 'socket.io-client';
+const socketUrl = 'http://192.168.0.2:1337';
+import { USER_CONNECTED, VERIFY_USER } from '../Events';
 
 const styles = StyleSheet.create({
   container: {
@@ -16,7 +20,13 @@ const styles = StyleSheet.create({
   },
   text2: {
     fontSize: 20,
-    padding: 8
+    padding: 5
+  },
+  text3: {
+    fontSize: 20,
+    padding: 5,
+    color: 'purple',
+    fontStyle: 'italic'
   },
   inputText: {
       height: 40,
@@ -36,15 +46,54 @@ export default class Home extends Component {
   constructor(props){
     super(props);
     this.state = {
-      name: ''
+      socket: null,
+      users: ['boo', 'kitty'],
+      user: null,
+      name: '',
+      error: ''
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.initSocket = this.initSocket.bind(this);
+    this.setUser = this.setUser.bind(this);
+  }
+
+  componentWillMount(){
+    this.initSocket();
+  }
+
+  initSocket() {
+    const socket = io(socketUrl);
+    socket.on('update', () => {
+      if (!this.state.error) {
+        this.setState({error: 'TEST EMIT ERROR MESSAGE'});
+      } else {
+        this.setState({error: ''});
+      }
+    });
+    this.setState({socket});
   }
 
   handleChange(name) {
-    this.setState({
-      name
-    });
+    this.setState({name});
+  }
+
+  handleSubmit() {
+    const socket = this.state.socket;
+    const name = this.state.name;
+    this.props.navigation.navigate('Chat');
+    socket.emit(VERIFY_USER, name, this.setUser);
+  }
+
+  setUser(user, isUser) {
+    if (isUser) {
+      this.setState({ error: 'Name already taken.' });
+    } else {
+      const { socket } = this.state;
+      socket.emit(USER_CONNECTED, user);
+      this.setState({user});
+      this.setState({ error: '' });
+    }
   }
 
   render() {
@@ -69,14 +118,17 @@ export default class Home extends Component {
           placeholderTextColor= "#FFFFFF"
           onChangeText={(name) => this.handleChange(name)}
           value={this.state.name}
-          placeholder="Fellow Name"
+          placeholder="Enter Fellow Name"
         />
         <Button
           style={styles.button}
-          onPress={() => this.props.navigation.navigate('Chat', {name: this.state.name})}
-          title="ENTER"
+          onPress={this.handleSubmit}
+          title="BEGIN"
           color="#CE1D25"
         />
+        <Text style={styles.text3}>{this.state.error ?
+          this.state.error : null}
+        </Text>
       </View>
     );
   }

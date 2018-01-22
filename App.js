@@ -4,8 +4,6 @@ import { StackNavigator } from 'react-navigation';
 import Home from './components/Home';
 import Chat from './components/Chat';
 import Countdown from './components/Countdown';
-// import Timer from './components/Timer';
-// import Timeup from './components/Timeup';
 
 const RootNavigator = StackNavigator({
     Main: {
@@ -17,27 +15,15 @@ const RootNavigator = StackNavigator({
     Chat: {
       screen: Chat,
       navigationOptions: {
-        headerTitle: '3...2...1!'
+        headerTitle: 'Are We Ready?'
       }
     },
     Countdown: {
       screen: Countdown,
       navigationOptions: {
-        headerTitle: 'You got this.'
+        headerTitle: 'Timer Has Started!'
       }
     }
-    // Timer: {
-    //   screen: Timer,
-    //   navigationOptions: {
-    //     headerTitle: 'Timer'
-    //   }
-    // },
-    // Timeup: {
-    //   screen: Timeup,
-    //   navigationOptions: {
-    //     headerTitle: 'Time\'s Up!'
-    //   }
-    // }
 });
 
 export default class App extends React.Component {

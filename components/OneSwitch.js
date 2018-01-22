@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, Switch } from 'react-native';
 
-export default OneSwitch = (props) => {
+const OneSwitch = (props) => {
   return (
     <View>
       <Switch
@@ -13,3 +13,5 @@ export default OneSwitch = (props) => {
     </View>
    );
 };
+
+export default OneSwitch;

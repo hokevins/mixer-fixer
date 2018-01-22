@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, Image, TextInput } from 'react-native';
+import { View, Image } from 'react-native';
 
 import TimerCountdown from 'react-native-timer-countdown';
 
@@ -13,7 +13,6 @@ const Countdown = (props) => {
               allowFontScaling={true}
               style={{
                 fontSize: 100,
-                flex: 1,
                 flexDirection: 'column',
                 alignSelf: 'center',
                 padding: 20,
