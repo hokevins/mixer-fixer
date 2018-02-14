@@ -1,3 +1,9 @@
+// FIX IP ADDRESS IN ONE PLACE AND UPDATE AS NODE ENV VARIABLE
+  // ADD NOTE TO README.MD TO CHANGE IP ADDRESS TO MAKE IT WORK!
+  // add next iteration features to develop in AGILE?, mention that it's an MVP?
+// FIX SWITCHES AND EMIT DIFFERENT ONES TURNED ON WITH CASSIO'S FIX
+// CALCULATE ALL SWITCHES ON AND EMIT READY FOR TIMER
+
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -5,7 +11,7 @@ import OneSwitch from './OneSwitch';
 
 window.navigator.userAgent = 'react-native';
 import io from 'socket.io-client';
-const socketUrl = 'http://192.168.0.2:1337';
+const socketUrl = 'http://172.16.21.157:1337';
 import { USER_CONNECTED } from '../Events';
 
 const styles = StyleSheet.create({
@@ -49,6 +55,7 @@ export default class Chat extends Component {
       connectedUsers: {},
       ready: false,
       everyoneReady: [],
+      switchValues: {},
       activeSwitch: null
     };
     this.handleSwitch = this.handleSwitch.bind(this);
@@ -75,7 +82,7 @@ export default class Chat extends Component {
   }
 
 // Future implementation:  Start timer only when all teams are ready, account for individual switch options (turning on only 1 switch at a time).
-  handleSwitch() {
+  handleSwitch(id) {
     // const oldReady = this.state.everyoneReady;
     // for (let i = 0; i < oldReady.length; i++) {
     //   if (oldReady[i] === false) {
@@ -88,14 +95,18 @@ export default class Chat extends Component {
       // this.props.navigation.navigate('Countdown');
       // this.setState({ready: false});
     // }
-    const socket = io(socketUrl);
-    socket.emit('READY');
+    const isOn = this.state.switchValues[id];
+    this.setState({switchValues: {[id]: !isOn}});
+    // const socket = io(socketUrl);
+    // socket.emit('READY');
   }
 
-  toggleSwitch = (switchNumber) => {
+  toggleSwitch = (id) => {
+
     this.setState({
       activeSwitch: switchNumber === this.state.activeSwitch ? null : switchNumber
     });
+
   };
 
   switchOne = (value) => { this.toggleSwitch(1)};
@@ -107,6 +118,8 @@ export default class Chat extends Component {
 // />
 
   render() {
+    const {connectedUsers} = this.state
+    console.log('??????????', this.state.switchValues)
     return (
       <View style={styles.container}>
         <View style={styles.userList}>
@@ -114,8 +127,9 @@ export default class Chat extends Component {
             Object.keys(this.state.connectedUsers)
           .map((user, index) => (<View key={index}>
             <OneSwitch
+              id={this.state.connectedUsers[user].user.id}
               toggleSwitch={this.handleSwitch}
-              switchValue={this.state.ready}
+              switchValue={this.state.switchValues[this.state.connectedUsers[user].user.id]}
             />
             <Text style={styles.text}>Is Team {user} ready?</Text>
           </View>

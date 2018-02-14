@@ -1,5 +1,7 @@
 # Welcome to _Mixer Fixer_
 
+[YouTube LIVE Demo] (https://www.youtube.com/watch?v=3Z5y1CEAOWI)
+
 This React-native iOS app uses Socket.io to solve Fullstack Academy's problem of synchronizing time between remote teams for teaching fellows.
 
 Created over a 4-day stackathon period, this project uses Socket.io and Socket.io-client as dependencies.  It uses Express + UUID for the backend management, and React-native + StackNavigator for the frontend.

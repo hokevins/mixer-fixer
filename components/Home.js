@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Button, Image, TextInput } from 'react-native';
 
 window.navigator.userAgent = 'react-native';
 import io from 'socket.io-client';
-const socketUrl = 'http://192.168.0.2:1337';
+const socketUrl = 'http://172.16.21.157:1337';
 import { USER_CONNECTED, VERIFY_USER } from '../Events';
 
 const styles = StyleSheet.create({
